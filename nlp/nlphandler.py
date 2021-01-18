@@ -5,11 +5,16 @@ import stanza
 
 
 class NLPHandler(threading.Thread):
-    """Starts the pipeline in a thread. Resulting process
-    can be called once the language module is downloaded and the
-    pipeline is ready.
+    """
+    Starts the stanza language processing pipeline in a separate thread.
 
-    Process output is logged using the provided logger."""
+    Resulting language processing can be done after the language module has been downloaded
+    and the tokenizing processor has been loaded as indicated by is_ready().
+
+    Language processing output is logged to the provided logger on INFO level.
+    """
+
+    LANGUAGE = 'zh'
 
     def __init__(self, logger: logging.Logger):
         super().__init__()
@@ -20,13 +25,13 @@ class NLPHandler(threading.Thread):
         self.logger = logger
 
     def run(self) -> None:
-        self.start_pipeline()
+        self.__start_pipeline()
 
-    def start_pipeline(self) -> None:
-        stanza.download('zh')
+    def __start_pipeline(self) -> None:
+        stanza.download(self.LANGUAGE)
 
         self.nlp = stanza.Pipeline(
-            lang = 'zh',
+            lang = self.LANGUAGE,
             processors = 'tokenize'
         )
 

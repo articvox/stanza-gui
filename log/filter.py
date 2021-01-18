@@ -3,7 +3,9 @@ from typing import Callable
 
 
 class InterceptingLogFilter(logging.Filter):
-    """Intercepts log records and passes them to the provided callback"""
+    """
+    Filter that is intended for intercepting log messages and passing them to the provided callback method.
+    """
 
     def __init__(self, on_intercept: Callable):
         super().__init__()

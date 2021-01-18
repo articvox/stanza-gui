@@ -11,6 +11,7 @@ class TextEntry:
             bg = Color.GRAY,
             relief = tk.FLAT,
         )
+
         text.grid(
             padx = 15,
             pady = 15,
@@ -21,4 +22,5 @@ class TextEntry:
             columnspan = 4,
             sticky = tk.W + tk.E + tk.N + tk.S
         )
+
         return text

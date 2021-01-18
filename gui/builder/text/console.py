@@ -7,12 +7,13 @@ class Console:
 
     @staticmethod
     def build():
-        console = tk.Text(
+        text = tk.Text(
             bg = Color.BLACK,
             fg = Color.WHITE,
             relief = tk.FLAT,
         )
-        console.grid(
+
+        text.grid(
             padx = 15,
             pady = 15,
             ipadx = 1,
@@ -24,4 +25,4 @@ class Console:
             sticky = tk.E + tk.W + tk.N + tk.S
         )
 
-        return console
+        return text

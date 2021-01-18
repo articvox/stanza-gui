@@ -17,6 +17,7 @@ class StartBtn:
             bd = 2,
             relief = tk.FLAT
         )
+
         button.grid(
             padx = 15,
             pady = 15,
@@ -27,4 +28,5 @@ class StartBtn:
             columnspan = 2,
             sticky = tk.W + tk.E + tk.N + tk.S
         )
+
         return button

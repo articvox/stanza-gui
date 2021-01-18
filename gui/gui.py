@@ -3,18 +3,18 @@ import queue
 import tkinter as tk
 from typing import Callable
 
-from gui.analyze import AnalyzeBtn
+from gui.builder.button.analyze import AnalyzeBtn
 from gui.color import Color
 
-from gui.console import Console
-from gui.start import StartBtn
-from gui.textentry import TextEntry
+from gui.builder.text.console import Console
+from gui.builder.button.start import StartBtn
+from gui.builder.text.textentry import TextEntry
 from log.filter import InterceptingLogFilter
 from log.queuehandler import QueueHandler
 
 
 class GUI:
-    __CONSOLE_REFRESH_MS = 100
+    CONSOLE_REFRESH_MS = 100
 
     def __init__(self, root: tk.Tk, logger: logging.Logger):
         self.root = root
@@ -28,12 +28,9 @@ class GUI:
         self.__intercept_logging()
 
         self.root.after(
-            self.__CONSOLE_REFRESH_MS,
+            self.CONSOLE_REFRESH_MS,
             self.__log_poll_queue
         )
-
-    def reload(self) -> None:
-        self.__create_ui()
 
     def console_log(self, message: str) -> None:
         self.__access_console(lambda: self.console.insert(tk.END, message + '\n'))
